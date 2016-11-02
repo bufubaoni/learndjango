@@ -6,5 +6,8 @@ import views
 urlpatterns = [
     url(r'^$', views.test),
     url(r'^login/$', views.loginme, name="login"),
-    url(r'^logout/$', views.logoutme, name="logout")
+    url(r'^logout/$', views.logoutme, name="logout"),
+    url(r'^addmodel/$',views.addmodel,name="addmodel"),
+    url(r'^promodel/$', views.promodel, name="promodel"),
+    # url(r'^promodel/(?P<test_id>[0-9]+)$', views.promodel, name="promodel")
 ]

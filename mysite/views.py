@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django import forms
@@ -12,7 +13,8 @@ import pdb
 
 
 def test(request):
-    return render(request, "test.html", {"user": request.user})
+    task = MyModel.objects.all()
+    return render(request, "test.html", {"user": request.user, "task": task})
 
 
 def loginme(request):
@@ -37,3 +39,24 @@ def logoutme(request):
         return redirect("/mysite")
     else:
         return redirect("/mysite/login")
+
+
+def addmodel(request):
+    class Taskflow(forms.Form):
+        testflow = forms.CharField(label="testflow")
+
+    if request.method == "POST":
+        form = Taskflow(request.POST)
+        my = MyModel.objects.create(testflow=form.data["testflow"])
+        type(request.user)
+        my.proceed(request.user)
+        return redirect("/mysite")
+    else:
+        return render(request, "taskflow.html", {"form": Taskflow()})
+
+
+def promodel(request):
+    task = MyModel.objects.get(pk=10)
+    # task = MyModel.objects.all()
+    task.proceed(request.user)
+    return render(request, "promodel.html", {"task": task})
