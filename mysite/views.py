@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django import forms
 from django.shortcuts import render, redirect
@@ -12,11 +12,7 @@ import pdb
 
 
 def test(request):
-    # my = MyModel.objects.get(pk=2)
-    # user = User.objects.get(username=request.user)
-    # my.proceed(user)
-    # my.proceed(user, next_state=State.objects.get(label='start'))
-    return render(request, "test.html", {"test1": request.user})
+    return render(request, "test.html", {"user": request.user})
 
 
 def loginme(request):
@@ -33,3 +29,11 @@ def loginme(request):
             return redirect("/mysite")
 
     return render(request, "login.html", {"form": loginform()})
+
+
+def logoutme(request):
+    if request.user != "AnonymousUser":
+        logout(request)
+        return redirect("/mysite")
+    else:
+        return redirect("/mysite/login")
