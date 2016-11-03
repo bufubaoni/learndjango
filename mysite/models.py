@@ -12,7 +12,7 @@ from river.models.managers.wofkflow_object import WorkflowObjectManager
 class MyModel(models.Model):
     testflow = models.CharField(max_length=50, default="6666", verbose_name="测试")
     state = StateField()
-    mnage = WorkflowObjectManager()
+    object = WorkflowObjectManager()
 
     def __unicode__(self):
         return self.testflow
