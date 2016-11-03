@@ -9,6 +9,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
+
 # Create your models here.
 
 
@@ -17,9 +18,23 @@ class MyModel(models.Model):
     state = StateField(verbose_name="状态")
     objects = WorkflowObjectManager()
 
-
     def __unicode__(self):
         return self.testflow
 
     def __str__(self):
         return self.testflow
+
+
+class somework(models.Model):
+    title = models.CharField(max_length=100, verbose_name="题目")
+    content = models.TextField(verbose_name="汇报")
+    state = StateField(verbose_name="提交状态")
+    object = WorkflowObjectManager()
+
+    def __unicode__(self):
+        return self.title
+
+    def __str__(self):
+        return self.title
+
+
