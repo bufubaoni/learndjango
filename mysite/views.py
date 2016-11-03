@@ -80,3 +80,10 @@ def addsomework(request):
 
 def someworkstat(request, work_id):
     work = somework.objects.get(pk=work_id)
+    return render(request, "someworkstat.html", {"work": work})
+
+
+def checkwork(request, work_id):
+    work = somework.objects.get(pk=work_id)
+    work.proceed(request.user)
+    return redirect("/someworkstat", (work_id,))

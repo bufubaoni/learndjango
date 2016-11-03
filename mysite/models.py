@@ -29,7 +29,7 @@ class somework(models.Model):
     title = models.CharField(max_length=100, verbose_name="题目")
     content = models.TextField(verbose_name="汇报")
     state = StateField(verbose_name="提交状态")
-    object = WorkflowObjectManager()
+    objects = WorkflowObjectManager()
 
     def __unicode__(self):
         return self.title

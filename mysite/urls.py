@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^addmodel/$',views.addmodel,name="addmodel"),
     url(r'^promodel/$', views.promodel, name="promodel"),
     url(r'^addsomework/$', views.addsomework, name="addsomework"),
-    url(r'^addsomework/(<?work_id[0-9]+>)$', views.someworkstat, name="someworkstat"),
+    url(r'^addsomework/(?P<work_id>[0-9]+)/$', views.someworkstat, name="someworkstat"),
+    url(r'^checkwork/(?P<work_id>[0-9]+)/$', views.checkwork, name="checkwork"),
     # url(r'^promodel/(?P<test_id>[0-9]+)$', views.promodel, name="promodel")
 ]
