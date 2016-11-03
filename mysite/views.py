@@ -9,7 +9,7 @@ from django.utils import six
 from requests import sessions
 from river.models import State
 
-from mysite.models import MyModel
+from mysite.models import MyModel, somework
 import pdb
 
 
@@ -61,3 +61,22 @@ def promodel(request):
     # task = MyModel.objects.all()
     task.proceed(request.user)
     return render(request, "promodel.html", {"task": task})
+
+
+def addsomework(request):
+    class SomeWork(forms.Form):
+        title = forms.CharField(label="题目")
+        content = forms.CharField(label="内容")
+
+    if request.method == "POST":
+        form = SomeWork(request.POST)
+        work = somework.object.create(title=form.data["title"],
+                                      content=form.data["content"])
+        work.proceed(request.user)
+        return redirect("/mysite")
+    else:
+        return render(request, "addsomework.html", {"form": SomeWork()})
+
+
+def someworkstat(request, work_id):
+    work = somework.objects.get(pk=work_id)
