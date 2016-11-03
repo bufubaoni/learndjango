@@ -57,7 +57,7 @@ def addmodel(request):
 
 
 def promodel(request):
-    task = MyModel.objects.get(pk=3)
+    task = MyModel.objects.get(pk=5)
     # task = MyModel.objects.all()
     task.proceed(request.user)
     return render(request, "promodel.html", {"task": task})

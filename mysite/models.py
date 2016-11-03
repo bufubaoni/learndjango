@@ -14,10 +14,12 @@ sys.setdefaultencoding("utf-8")
 
 class MyModel(models.Model):
     testflow = models.CharField(max_length=50, default="6666", verbose_name="测试")
-    state = StateField()
-
+    state = StateField(verbose_name="状态")
     objects = WorkflowObjectManager()
 
 
     def __unicode__(self):
+        return self.testflow
+
+    def __str__(self):
         return self.testflow
