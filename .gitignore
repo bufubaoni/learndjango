@@ -9,6 +9,7 @@ progress.log
 .idea
 session/*
 Database/*
+*.sqlite3
 
 # ---> Python
 # Byte-compiled / optimized / DLL files
