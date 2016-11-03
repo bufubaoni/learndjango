@@ -5,6 +5,7 @@ from django import forms
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.utils import six
 from requests import sessions
 from river.models import State
 
@@ -47,7 +48,7 @@ def addmodel(request):
 
     if request.method == "POST":
         form = Taskflow(request.POST)
-        my = MyModel.objects.create(testflow=form.data["testflow"])
+        my = MyModel.objects.create(testflow=form.data["testflow"].encode("utf8"))
         type(request.user)
         my.proceed(request.user)
         return redirect("/mysite")
@@ -56,7 +57,7 @@ def addmodel(request):
 
 
 def promodel(request):
-    task = MyModel.objects.get(pk=10)
+    task = MyModel.objects.get(pk=3)
     # task = MyModel.objects.all()
     task.proceed(request.user)
     return render(request, "promodel.html", {"task": task})

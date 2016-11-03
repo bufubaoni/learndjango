@@ -4,7 +4,10 @@ from __future__ import unicode_literals
 from django.db import models
 from river.models.fields.state import StateField
 from river.models.managers.wofkflow_object import WorkflowObjectManager
+import sys
 
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 # Create your models here.
 
