@@ -56,10 +56,10 @@ def addmodel(request):
         return render(request, "taskflow.html", {"form": Taskflow()})
 
 
-def promodel(request):
-    task = MyModel.objects.get(pk=5)
+def promodel(request, md_id):
+    task = MyModel.objects.get(pk=md_id)
     # task = MyModel.objects.all()
-    task.proceed(request.user)
+    # task.proceed(request.user)
     return render(request, "promodel.html", {"task": task})
 
 
@@ -87,3 +87,16 @@ def checkwork(request, work_id):
     work = somework.objects.get(pk=work_id)
     work.proceed(request.user)
     return redirect("/someworkstat", (work_id,))
+
+
+def bohuiqingjia(request, md_id):
+    md = MyModel.objects.get(pk=md_id)
+    md.proceed(request.user, next_state=State.objects.get(label='驳回'))
+    return redirect("/mysite")
+
+
+def pizhun(request, md_id):
+    md = MyModel.objects.get(pk=md_id)
+    md.proceed(request.user, next_state=State.objects.get(label='完成请假'))
+
+    return redirect("/mysite")

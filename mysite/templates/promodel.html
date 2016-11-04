@@ -7,7 +7,8 @@
 <body>
 
     <h2>{{ task.testflow }}</h2>
-    <a href="{% url 'promodel'%}">{{ task.state }}</a></br>
-
+    <a href="{% url 'promodel' task.id %}">{{ task.state }}</a></br>
+    <a href="{% url 'pizhun' task.id %}">批准</a></br>
+    <a href="{% url 'bohuiqingjia' task.id %}">驳回</a></br>
 </body>
 </html>
