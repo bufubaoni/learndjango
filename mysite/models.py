@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from river.models.fields.state import StateField
 from river.models.managers.wofkflow_object import WorkflowObjectManager
+from treebeard.mp_tree import MP_Node
 import sys
 
 reload(sys)
@@ -36,5 +37,12 @@ class somework(models.Model):
 
     def __str__(self):
         return self.title
+
+class Category(MP_Node):
+    name = models.CharField(max_length=30,verbose_name="显示名称")
+    node_order_by = ["name"]
+
+    def __unicode__(self):
+        return "Category: %s" % self.name
 
 

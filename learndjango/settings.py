@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mysite.apps.MysiteConfig',
     'river',
+    'treebeard'
 ]
 
 MIDDLEWARE = [
