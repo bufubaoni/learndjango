@@ -6,6 +6,9 @@ from river.models.fields.state import StateField
 from river.models.managers.wofkflow_object import WorkflowObjectManager
 from treebeard.mp_tree import MP_Node
 import sys
+from treebeard.admin import TreeAdmin
+from treebeard.forms import movenodeform_factory
+
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -45,3 +48,6 @@ class Category(MP_Node):
 
     def __unicode__(self):
         return "Category: %s" % self.name
+
+class MyAdmin(TreeAdmin):
+    form = movenodeform_factory(Category)
