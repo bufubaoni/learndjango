@@ -5,4 +5,4 @@ from .models import MyModel, somework, Category,MyAdmin
 admin.site.register(MyModel)
 admin.site.register(somework)
 admin.site.register(Category)
-admin.site.register(MyAdmin)
+# admin.site.register(MyAdmin)

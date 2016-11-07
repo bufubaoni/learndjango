@@ -42,12 +42,12 @@ class somework(models.Model):
         return self.title
 
 
-class Category(MP_Node):
-    name = models.CharField(max_length=30, verbose_name="显示名称")
-    node_order_by = ["name"]
+# class Category(MP_Node):
+#     name = models.CharField(max_length=30, verbose_name="显示名称")
+#     node_order_by = ["name"]
 
-    def __unicode__(self):
-        return "Category: %s" % self.name
+#     def __unicode__(self):
+#         return "Category: %s" % self.name
 
-class MyAdmin(TreeAdmin):
-    form = movenodeform_factory(Category)
+# class MyAdmin(TreeAdmin):
+#     form = movenodeform_factory(Category)

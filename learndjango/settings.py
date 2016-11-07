@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'mysite.apps.MysiteConfig',
     'django.conf.urls',
     'river',
-    'treebeard'
+    # 'treebeard'
 ]
 
 MIDDLEWARE = [
