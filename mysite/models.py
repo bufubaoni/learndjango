@@ -6,8 +6,7 @@ from river.models.fields.state import StateField
 from river.models.managers.wofkflow_object import WorkflowObjectManager
 from treebeard.mp_tree import MP_Node
 import sys
-
-
+from mptt.models import MPTTModel, TreeForeignKey
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -39,3 +38,14 @@ class somework(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class menu_item(MPTTModel):
+    name = models.CharField(max_length=50, unique=True, verbose_name='菜单名称')
+    icon = models.CharField(max_length=50, null=True, blank=True, verbose_name='图标')
+    uil = models.CharField(max_length=100, verbose_name='链接')
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children',
+                            db_index=True,verbose_name='父节点')
+
+    def __unicode__(self):
+        return self.name
