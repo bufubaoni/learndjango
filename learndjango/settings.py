@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'mysite.apps.MysiteConfig',
     'django.conf.urls',
     'river',
-    # 'treebeard'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +55,7 @@ ROOT_URLCONF = 'learndjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['//c:/Python27/Lib/site-packages/treebeard/templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
