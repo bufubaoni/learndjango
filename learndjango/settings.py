@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'mysite.apps.MysiteConfig',
     'django.conf.urls',
     'river',
+    'mptt'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'learndjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['c:/Python27/Lib/site-packages/mptt/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
