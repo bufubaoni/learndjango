@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 from river.models.fields.state import StateField
 from river.models.managers.wofkflow_object import WorkflowObjectManager
 from treebeard.mp_tree import MP_Node
@@ -45,7 +46,14 @@ class menu_item(MPTTModel):
     icon = models.CharField(max_length=50, null=True, blank=True, verbose_name='图标')
     uil = models.CharField(max_length=100, verbose_name='链接')
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children',
-                            db_index=True,verbose_name='父节点')
+                            db_index=True, verbose_name='父节点')
 
     def __unicode__(self):
         return self.name
+
+
+class CustomUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    mobile = models.CharField(max_length=16, verbose_name="电话", help_text="输入电话号码")
+    menu_item = models.ForeignKey("menu_item", null=True, on_delete=models.SET_NULL, related_name="这个+",
+                                  help_text="菜单")
