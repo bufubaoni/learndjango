@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'uni_form/default.uni-form.css' %}">
+    <link rel="stylesheet" href="{% static 'uni_form/uni-form.css' %}">
     <title>Title</title>
 </head>
 <body>
 
+{% block content %}
+   <button class="btn btn-info">666666</button>
+{% endblock %}
+<script src="{% static 'uni_form/jquery.js' %}"></script>
+<script src="{% static 'uni_form/uni-form.jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>

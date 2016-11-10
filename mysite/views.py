@@ -8,14 +8,16 @@ from django.shortcuts import render, redirect
 from django.utils import six
 from requests import sessions
 from river.models import State
-
+from .formsw import ExampleForm
 from mysite.models import MyModel, somework
 import pdb
 
 
 def test(request):
     task = MyModel.objects.all()
-    return render(request, "test.html", {"user": request.user, "task": task})
+    formss = ExampleForm()
+    return render(request, "test.html",
+                  {"user": request.user, "task": task, "form": formss})
 
 
 def loginme(request):

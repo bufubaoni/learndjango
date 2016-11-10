@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'river',
     'mptt',
     'crispy_forms',
+    # 'uni_form'
 
 ]
 
@@ -118,6 +119,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_DIR = [os.path.join(BASE_DIR, 'static/')]
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
+
 # AUTH_USER_MODEL = 'mysite.CustomUser'
+CRISPY_TEMPLATE_PACK = 'uni_form'
+
+# form setting
+CRISPY_CLASS_CONVERTERS = {'textinput': "textinput inputtext form-control"}

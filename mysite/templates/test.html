@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{#{% load uni_form_tags %}#}
+{% load crispy_forms_tags %}
+{% block content %}
 <a href="">{{ user }}</a>
 <a href="{% url 'addmodel' %}">add model </a></br>
 <a href="{% url 'addsomework' %}">add somework </a></br>
@@ -12,6 +9,5 @@
 <a href="{% url 'promodel' 5%}">pro model </a></br>
 <a href="{% url 'login' %}">login</a></br>
 <a href="{% url 'logout' %}">logout</a>
-
-</body>
-</html>
+{{ form|crispy }}
+{% endblock %}
