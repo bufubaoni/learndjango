@@ -19,9 +19,9 @@ def test(request):
     # request.user
 
     # pdb.set_trace()
-    tree = menu_item.objects.filter(MenuGroup=CustomUser.objects.get(pk=request.user.id).menu_item.pk)
+    nodes = menu_item.objects.filter(MenuGroup=CustomUser.objects.get(pk=request.user.id).menu_item.pk)
     return render(request, "test.html",
-                  {"user": request.user, "task": task, "form": formss, "tree": tree})
+                  {"user": request.user, "task": task, "form": formss, "nodes": nodes})
 
 
 def loginme(request):

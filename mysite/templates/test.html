@@ -9,13 +9,13 @@
     <a href="{% url 'promodel' 5 %}">pro model </a></br>
     <a href="{% url 'login' %}">login</a></br>
     <a href="{% url 'logout' %}">logout</a>
-{#    {{ form|crispy }}#}
+    {#    {{ form|crispy }}#}
     {% load mptt_tags %}
-    <ul class="root">
-        {% recursetree tree %}
+    <ul>
+        {% recursetree nodes %}
             <li>
-                {{ tree.name }}
-                {% if not tree.is_leaf_node %}
+                {{ node.name }}
+                {% if not node.is_leaf_node %}
                     <ul class="children">
                         {{ children }}
                     </ul>
