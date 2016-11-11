@@ -9,15 +9,19 @@ from django.utils import six
 from requests import sessions
 from river.models import State
 from .formsw import ExampleForm
-from mysite.models import MyModel, somework
+from mysite.models import MyModel, somework, CustomUser, menu_item
 import pdb
 
 
 def test(request):
     task = MyModel.objects.all()
     formss = ExampleForm()
+    # request.user
+
+    # pdb.set_trace()
+    tree = menu_item.objects.filter(MenuGroup=CustomUser.objects.get(pk=request.user.id).menu_item.pk)
     return render(request, "test.html",
-                  {"user": request.user, "task": task, "form": formss})
+                  {"user": request.user, "task": task, "form": formss, "tree": tree})
 
 
 def loginme(request):

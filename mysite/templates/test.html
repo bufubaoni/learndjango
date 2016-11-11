@@ -2,12 +2,25 @@
 {#{% load uni_form_tags %}#}
 {% load crispy_forms_tags %}
 {% block content %}
-<a href="">{{ user }}</a>
-<a href="{% url 'addmodel' %}">add model </a></br>
-<a href="{% url 'addsomework' %}">add somework </a></br>
-<a href="{% url 'someworkstat' 1 %}">someworkstat </a></br>
-<a href="{% url 'promodel' 5%}">pro model </a></br>
-<a href="{% url 'login' %}">login</a></br>
-<a href="{% url 'logout' %}">logout</a>
-{{ form|crispy }}
+    <a href="">{{ user }}</a>
+    <a href="{% url 'addmodel' %}">add model </a></br>
+    <a href="{% url 'addsomework' %}">add somework </a></br>
+    <a href="{% url 'someworkstat' 1 %}">someworkstat </a></br>
+    <a href="{% url 'promodel' 5 %}">pro model </a></br>
+    <a href="{% url 'login' %}">login</a></br>
+    <a href="{% url 'logout' %}">logout</a>
+{#    {{ form|crispy }}#}
+    {% load mptt_tags %}
+    <ul class="root">
+        {% recursetree tree %}
+            <li>
+                {{ tree.name }}
+                {% if not tree.is_leaf_node %}
+                    <ul class="children">
+                        {{ children }}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endrecursetree %}
+    </ul>
 {% endblock %}

@@ -45,8 +45,11 @@ class menu_item(MPTTModel):
     name = models.CharField(max_length=50, unique=True, verbose_name='菜单名称')
     icon = models.CharField(max_length=50, null=True, blank=True, verbose_name='图标')
     uil = models.CharField(max_length=100, verbose_name='链接')
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children',
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='menuitem',
                             db_index=True, verbose_name='父节点')
+    MenuGroup = models.ForeignKey("MenuGroup", verbose_name="菜单组",
+                                  related_name="menugroup", null=True,
+                                  on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.name
@@ -54,6 +57,16 @@ class menu_item(MPTTModel):
 
 class CustomUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    mobile = models.CharField(max_length=16, verbose_name="电话", help_text="输入电话号码")
-    menu_item = models.ForeignKey("menu_item", null=True, on_delete=models.SET_NULL, related_name="这个+",
-                                  help_text="菜单")
+    mobile = models.CharField(max_length=16, null=True, verbose_name="电话",
+                              help_text="输入电话号码")
+    menu_item = models.ForeignKey("MenuGroup", null=True, on_delete=models.SET_NULL,
+                                  help_text="菜单", related_name='user')
+
+
+class MenuGroup(models.Model):
+    name = models.CharField(max_length=16, verbose_name="名称", help_text="菜单分组")
+    note = models.CharField(max_length=50, null=True, verbose_name="备注",
+                            help_text="这里添加备注")
+
+    def __unicode__(self):
+        return self.name
