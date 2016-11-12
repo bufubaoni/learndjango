@@ -9,7 +9,7 @@ from django.utils import six
 from requests import sessions
 from river.models import State
 from .formsw import ExampleForm
-from mysite.models import MyModel, somework, CustomUser, menu_item
+from mysite.models import MyModel, somework, CustomUser, MenuItem
 import pdb
 
 
@@ -19,7 +19,7 @@ def test(request):
     # request.user
 
     # pdb.set_trace()
-    nodes = menu_item.objects.filter(MenuGroup=CustomUser.objects.get(pk=request.user.id).menu_item.pk)
+    nodes = CustomUser.objects.get(pk=request.user.pk).menugroup.menu.get_family()
     return render(request, "test.html",
                   {"user": request.user, "task": task, "form": formss, "nodes": nodes})
 

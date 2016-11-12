@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import MyModel, somework, menu_item, CustomUser,MenuGroup
+from .models import MyModel, somework, MenuItem, CustomUser,MenuGroup
 from mptt.admin import DraggableMPTTAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdim
 from django.contrib.auth.models import User
@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 admin.site.register(MyModel)
 admin.site.register(somework)
 admin.site.register(MenuGroup)
-admin.site.register(menu_item, DraggableMPTTAdmin)
+admin.site.register(MenuItem, DraggableMPTTAdmin)
 
 
 class Custom(admin.StackedInline):
