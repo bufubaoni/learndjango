@@ -20,7 +20,7 @@ def test(request):
 
     # pdb.set_trace()
     nodes = CustomUser.objects.get(pk=request.user.pk).menugroup.menu.get_family()
-    return render(request, "test.html",
+    return render(request, "index.html",
                   {"user": request.user, "task": task, "form": formss, "nodes": nodes})
 
 
