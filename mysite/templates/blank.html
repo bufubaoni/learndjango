@@ -426,16 +426,6 @@
         </div><!-- /.sidebar-shortcuts -->
         {% load mptt_tags %}
         <ul class="nav nav-list">
-
-            {#            <li class="">#}
-            {#                <a href="index.html">#}
-            {#                    <i class="menu-icon fa fa-tachometer"></i>#}
-            {#                    <span class="menu-text"> Dashboard </span>#}
-            {#                </a>#}
-            {##}
-            {#                <b class="arrow"></b>#}
-            {#            </li>#}
-            {##}
             {% recursetree nodes %}
                 <li class="">
                     <a href="#" class="dropdown-toggle">
@@ -492,6 +482,8 @@
             </div>
 
             <div class="page-content">
+                {% load crispy_forms_tags %}
+                {{ form|crispy }}
                 <div class="ace-settings-container" id="ace-settings-container">
                     <div class="btn btn-app btn-xs btn-warning ace-settings-btn"
                          id="ace-settings-btn">

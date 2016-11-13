@@ -7,14 +7,14 @@ from django import forms
 
 CRISPY_CLASS_CONVERTERS = {'textinput': "textinput inputtext"}
 class ExampleForm(forms.Form):
-    like_website = forms.TypedChoiceField(
-        label="Do you like this website?",
-        choices=((1, "Yes"), (0, "No")),
-        coerce=lambda x: bool(int(x)),
-        widget=forms.RadioSelect,
-        initial='1',
-        required=True,
-    )
+    # like_website = forms.TypedChoiceField(
+    #     label="Do you like this website?",
+    #     choices=((1, "Yes"), (0, "No")),
+    #     coerce=lambda x: bool(int(x)),
+    #     widget=forms.RadioSelect,
+    #     initial='1',
+    #     required=True,
+    # )
 
     favorite_food = forms.CharField(
         label="What is your favorite food?",
@@ -47,7 +47,7 @@ class ExampleForm(forms.Form):
             required=True,
         )
         self.helper.form_id = 'id-exampleForm'
-        self.helper.form_class = 'blueForms'
+        self.helper.form_class = 'form-horizontal'
         self.helper.form_method = 'post'
         self.helper.form_action = 'submit_survey'
         self.helper.add_input(Submit('submit', 'Submit'))

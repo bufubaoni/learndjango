@@ -126,4 +126,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # form setting
-CRISPY_CLASS_CONVERTERS = {'textinput': "textinput inputtext form-control"}
+CRISPY_CLASS_CONVERTERS = {'textinput': "col-xs-10 col-sm-5"}
