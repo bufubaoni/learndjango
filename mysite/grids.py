@@ -10,3 +10,8 @@ class MyModelTable(tables.Table):
         model = MyModel
         attrs = {'class': 'table  table-bordered table-hover'}
 
+    def render_id(self, value):
+        return '<%s>' % value
+
+    def render_state(self, value):
+        return '--%s' % value
