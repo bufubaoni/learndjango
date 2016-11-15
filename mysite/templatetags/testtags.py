@@ -7,16 +7,17 @@ register = template.Library()
 
 
 class TestNode(template.Node):
-    def __init__(self):
+    def __init__(self, content):
+        self.content = content
         pass
 
     def render(self, context):
         t = get_template("form.html")
-        context.update({'test': "66666666"})
+        context.update({'test': self.content})
         # context["test"]
         return t.render(context.flatten())
 
 
 @register.tag
 def my_tag(parser, token):
-    return TestNode()
+    return TestNode("999999")
