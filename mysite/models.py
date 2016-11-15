@@ -5,7 +5,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from river.models.fields.state import StateField
 from river.models.managers.wofkflow_object import WorkflowObjectManager
-from treebeard.mp_tree import MP_Node
 import sys
 from mptt.models import MPTTModel, TreeForeignKey
 
