@@ -6,10 +6,12 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.utils import six
+from django_tables2 import RequestConfig
 from requests import sessions
 from river.models import State
 from .formsw import ExampleForm
 from mysite.models import MyModel, somework, CustomUser, MenuItem
+from grids import MyModelTable
 import pdb
 
 
@@ -20,8 +22,12 @@ def test(request):
 
     # pdb.set_trace()
     nodes = CustomUser.objects.get(pk=request.user.pk).menugroup.menu.get_family()
+
+    table = MyModelTable(MyModel.objects.all())
+    RequestConfig(request).configure(table)
     return render(request, "index.html",
-                  {"user": request.user, "task": task, "form": formss, "nodes": nodes})
+                  {"user": request.user, "task": task, "form": formss, "nodes": nodes,
+                   "table1": table})
 
 
 def loginme(request):

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'river',
     'mptt',
     'crispy_forms',
+    'django_tables2'
     # 'uni_form'
 
 ]
@@ -59,7 +60,8 @@ ROOT_URLCONF = 'learndjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['c:/Python27/Lib/site-packages/mptt/templates'],
+        'DIRS': ['c:/Python27/Lib/site-packages/mptt/templates',
+                 "c:/Python27/Lib/site-packages/django_tables2/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

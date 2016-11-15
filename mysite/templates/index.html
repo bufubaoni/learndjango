@@ -1,1 +1,7 @@
 {% extends "blank.html" %}
+{% block content %}
+    {#                {% load crispy_forms_tags %}#}
+    {#                {{ form|crispy }}#}
+    {% load  render_table from django_tables2 %}
+    {% render_table table1 %}
+{% endblock %}

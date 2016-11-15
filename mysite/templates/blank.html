@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %} "/>
     <link rel="stylesheet"
           href="{% static 'assets/font-awesome/4.5.0/css/font-awesome.min.css' %}"/>
-
+{#    <link rel="stylesheet"#}
+{#          href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}"/>#}
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
@@ -482,8 +483,8 @@
             </div>
 
             <div class="page-content">
-                {% load crispy_forms_tags %}
-                {{ form|crispy }}
+
+{#                {{ table1.as_html }}#}
                 <div class="ace-settings-container" id="ace-settings-container">
                     <div class="btn btn-app btn-xs btn-warning ace-settings-btn"
                          id="ace-settings-btn">
@@ -583,7 +584,9 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
+                        {% block content %}
 
+                        {% endblock %}
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
