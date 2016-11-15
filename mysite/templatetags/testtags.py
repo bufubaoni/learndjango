@@ -20,4 +20,7 @@ class TestNode(template.Node):
 
 @register.tag
 def my_tag(parser, token):
-    return TestNode("999999")
+    bit = token.split_contents()
+    bit.pop(0)
+
+    return TestNode(bit.pop(0))
