@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'mptt',
     'crispy_forms',
     'django_tables2',
-    'sekizai'
+
     # 'uni_form'
 
 ]

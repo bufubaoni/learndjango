@@ -9,8 +9,7 @@ register = template.Library()
 class TestNode(template.Node):
     # app_dirname = "mysite"
     def __init__(self, content):
-        params = content.copy()
-        super(TestNode, self).__init__(params)
+        super(TestNode, self).__init__()
 
         self.content = content
 
