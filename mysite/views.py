@@ -27,7 +27,7 @@ def test(request):
     RequestConfig(request).configure(table)
     return render(request, "index.html",
                   {"user": request.user, "task": task, "form": formss, "nodes": nodes,
-                   "table1": table})
+                   "table1": table, "test": "jiushi zhege "})
 
 
 def loginme(request):

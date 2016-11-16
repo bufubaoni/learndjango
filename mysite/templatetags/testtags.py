@@ -12,15 +12,19 @@ class TestNode(template.Node):
         pass
 
     def render(self, context):
+        c = self.content.resolve(context)
+        print(c)
         t = get_template("form.html")
-        context.update({'test': self.content})
+        context.update({'test': c})
         # context["test"]
         return t.render(context.flatten())
 
 
 @register.tag
 def my_tag(parser, token):
-    bit = token.split_contents()
-    bit.pop(0)
-
-    return TestNode(bit.pop(0))
+    bits = token.split_contents()
+    print(bits)
+    bits.pop(0)
+    c = parser.compile_filter(bits.pop(0))
+    print(c)
+    return TestNode(c)
