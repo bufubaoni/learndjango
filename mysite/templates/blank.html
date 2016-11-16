@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %} "/>
     <link rel="stylesheet"
           href="{% static 'assets/font-awesome/4.5.0/css/font-awesome.min.css' %}"/>
-{#    <link rel="stylesheet"#}
-{#          href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}"/>#}
+    {#    <link rel="stylesheet"#}
+    {#          href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}"/>#}
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
@@ -484,7 +484,7 @@
 
             <div class="page-content">
 
-{#                {{ table1.as_html }}#}
+                {#                {{ table1.as_html }}#}
                 <div class="ace-settings-container" id="ace-settings-container">
                     <div class="btn btn-app btn-xs btn-warning ace-settings-btn"
                          id="ace-settings-btn">
@@ -586,6 +586,9 @@
                         <!-- PAGE CONTENT BEGINS -->
                         {% block content %}
 
+                        {% endblock %}
+                        {% block js %}
+                            <h1>js1</h1>
                         {% endblock %}
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->

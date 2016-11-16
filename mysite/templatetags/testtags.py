@@ -8,6 +8,7 @@ register = template.Library()
 
 class TestNode(template.Node):
     def __init__(self, content):
+        super(TestNode, self).__init__()
         self.content = content
         pass
 

@@ -7,4 +7,9 @@
     <h1>测试tag</h1>
     {% load my_tag from testtags%}
     {% my_tag test %}
+    {% my_tag test %}
+{% endblock %}
+{% block js %}
+    {{ block.super }}
+    <h1>js2</h1>
 {% endblock %}
