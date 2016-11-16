@@ -7,17 +7,18 @@ register = template.Library()
 
 
 class TestNode(template.Node):
+    # app_dirname = "mysite"
     def __init__(self, content):
-        super(TestNode, self).__init__()
+        params = content.copy()
+        super(TestNode, self).__init__(params)
+
         self.content = content
-        pass
 
     def render(self, context):
         c = self.content.resolve(context)
         print(c)
         t = get_template("form.html")
         context.update({'test': c})
-        # context["test"]
         return t.render(context.flatten())
 
 
