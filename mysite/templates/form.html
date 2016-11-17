@@ -1,8 +1,10 @@
-
+{#{% extends "test.html" %}#}
+{% load sekizai_tags %}
 <h1>
     这是那个 tag----{{ test }}
 </h1>
-{% block js %}
-{#    {{ block.super }}#}
-    <h1>js2</h1>
-{% endblock %}
+
+{% addtoblock 'js' %}
+
+    <h1>js3-{{ test }}</h1>
+{% endaddtoblock %}
