@@ -21,8 +21,8 @@ def test(request):
     # request.user
 
     # pdb.set_trace()
-    nodes = CustomUser.objects.get(pk=request.user.pk).menugroup.menu.get_family()
-
+    nodes = CustomUser.objects.get(user=request.user.pk).menugroup.menu.get_descendants()
+    # nodes = MenuItem.objects.filter(level__lte=1+1, parent=menu.id)
     table = MyModelTable(MyModel.objects.all())
     RequestConfig(request).configure(table)
     return render(request, "index.html",
