@@ -1,16 +1,5 @@
-{% extends "blank.html" %}
-{% load sekizai_tags %}
+{% extends "layout.html" %}
 {% block content %}
-    {#                {% load crispy_forms_tags %}#}
-    {#                {{ form|crispy }}#}
     {% load  render_table from django_tables2 %}
-    {% render_table table1 %}
-    <h1>测试tag</h1>
-    {% load my_tag from testtags %}
-    {% my_tag test %}
-    {% my_tag test2 %}
-{% endblock %}
-{% block js %}
-    {{ block.super }}
-    <h1>js2</h1>
+    {% render_table table1 "table/table.html"%}
 {% endblock %}
