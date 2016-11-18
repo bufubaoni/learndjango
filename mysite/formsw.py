@@ -46,6 +46,7 @@ class ExampleForm(forms.Form):
             max_length=80,
             required=True,
         )
+        # self.helper.template = "boostrap3/inlineform.html"
         self.helper.form_id = 'id-exampleForm'
         self.helper.form_class = 'form-horizontal'
         self.helper.form_method = 'post'
