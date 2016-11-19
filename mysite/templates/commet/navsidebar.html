@@ -41,7 +41,8 @@
         <ul class="nav nav-list">
             {% recursetree nodes %}
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
+
+                    <a href="{{ node.uil }}" {% if not node.is_leaf_node %} class="dropdown-toggle" {% endif %}>
                         <i class="{{ node.icon }}"></i>
                         <span class="menu-text"> {{ node.name }} </span>
                         {% if not node.is_leaf_node %}
@@ -55,6 +56,7 @@
                             {{ children }}
                         </ul>
                     {% endif %}
+
                 </li>
             {% endrecursetree %}
             {#            </li>#}

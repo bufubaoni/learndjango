@@ -20,6 +20,7 @@ class Custom(admin.StackedInline):
     verbose_name_plural = "扩展属性"
 
 
+
 class UserAdmin(BaseUserAdim):
 
     inlines = (Custom, )
