@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.html import format_html
 from river.models.fields.state import StateField
 from river.models.managers.wofkflow_object import WorkflowObjectManager
 import sys

@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
+from hijack_admin.admin import HijackUserAdminMixin
 from .models import MyModel, somework, MenuItem, CustomUser, MenuGroup
 from mptt.admin import DraggableMPTTAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdim
@@ -20,7 +21,8 @@ class Custom(admin.StackedInline):
     verbose_name_plural = "扩展属性"
 
 
-class UserAdmin(BaseUserAdim):
+class UserAdmin(BaseUserAdim, HijackUserAdminMixin):
+    list_display = ("username", "email", "is_superuser", "hijack_field")
     inlines = (Custom,)
 
 
