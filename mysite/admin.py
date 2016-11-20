@@ -26,6 +26,7 @@ class UserAdmin(BaseUserAdim, HijackUserAdminMixin):
     inlines = (Custom,)
 
 
+
 class MyModelAdmin(admin.ModelAdmin):
     list_display = ('testflow', 'state')
 

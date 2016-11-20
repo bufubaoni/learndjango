@@ -1,4 +1,5 @@
 {% load sekizai_tags %}
+{% load hijack_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,8 @@
 
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %} "/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'hijack/hijack-styles.css' %}"/>
     <link rel="stylesheet"
           href="{% static 'assets/font-awesome/4.5.0/css/font-awesome.min.css' %}"/>
     {#    <link rel="stylesheet"#}
@@ -80,6 +83,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
+                    {% hijack_notification %}
                         {% block content %}
 
                         {% endblock %}
