@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     'django.conf.urls',
     'river',
     'mptt',
-    'crispy_forms',
+    # 'crispy_forms',
     'django_tables2',
     'sekizai',
     'hijack',
     'compat',
-    'hijack_admin'
-    # 'uni_form'
+    'hijack_admin',
+    'bootstrap3'
 
 ]
 

@@ -9,6 +9,8 @@ from django.utils import six
 from django_tables2 import RequestConfig
 from requests import sessions
 from river.models import State
+from river.utils.exceptions import RiverException
+
 from .formsw import ExampleForm
 from mysite.models import MyModel, somework, CustomUser, MenuItem
 from grids import MyModelTable
@@ -55,17 +57,20 @@ def logoutme(request):
 
 
 def addmodel(request):
-    class Taskflow(forms.Form):
-        testflow = forms.CharField(label="testflow")
-
+    # class Taskflow(forms.Form):
+    #     testflow = forms.CharField(label="testflow")
+    nodes = CustomUser.objects.get(user=request.user.pk).menugroup.menu.get_descendants()
     if request.method == "POST":
-        form = Taskflow(request.POST)
+        form = ExampleForm(request.POST)
         my = MyModel.objects.create(testflow=form.data["testflow"].encode("utf8"))
-        type(request.user)
-        my.proceed(request.user)
+        try:
+            my.proceed(request.user)
+        except RiverException as e:
+            my.delete()
         return redirect("/mysite")
     else:
-        return render(request, "taskflow.html", {"form": Taskflow()})
+        form = ExampleForm()
+        return render(request, "taskflow.html", {'form': form, "nodes": nodes})
 
 
 def promodel(request, md_id):
