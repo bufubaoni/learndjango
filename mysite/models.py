@@ -43,10 +43,15 @@ class somework(models.Model):
 
 class CustomUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    mobile = models.CharField(max_length=16, null=True, verbose_name="电话",
-                              help_text="输入电话号码")
     menugroup = models.ForeignKey("MenuGroup", null=True, on_delete=models.SET_NULL,
                                   help_text="菜单", related_name='menugroup')
+
+
+# class RisunId(models.Model):
+#     user = models.OneToOneField()
+#     is_group = models.BooleanField()
+#     is_company = models.BooleanField()
+#     is_person = models.BooleanField()
 
 
 class MenuGroup(models.Model):
