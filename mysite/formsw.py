@@ -18,7 +18,6 @@ class ExampleForm(forms.Form):
     datetime = forms.DateTimeField(
         label="时间",
     )
-
     file = forms.ImageField(
         label="文件",
         help_text="正面照片",
