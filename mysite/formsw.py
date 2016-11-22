@@ -25,6 +25,22 @@ class ExampleForm(forms.Form):
     file2 = forms.ImageField(
         label="文件2"
     )
+    select1 = forms.ChoiceField(
+        # attrs={"_class": "chosen-select"},
+        help_text="选择你喜欢的",
+        label="选择",
+        choices=(list({1: 2, 3: 4}.items())),
+        required=True,
+        widget=None,
+    )
+    swifch = forms.MultipleChoiceField(
+        choices=(list({1: 2, 3: 4}.items())),
+
+        initial='option_one',
+        widget=forms.CheckboxSelectMultiple,
+        # choices=(list({1: 2, 3: 4}.items())),
+        # label="开关"
+    )
 
     def __init__(self, *args, **kwargs):
         super(ExampleForm, self).__init__(*args, **kwargs)
@@ -34,7 +50,7 @@ class ExampleForm(forms.Form):
         self.helper.field_class = 'col-lg-10'
         self.helper.field_template = "form/customField.html"
         self.helper.layout = Layout(
-            'testflow', 'datetime','file', 'file2',
+            'testflow', 'datetime', 'file', 'file2', 'select1', 'swifch',
             Div(StrictButton('添加', css_class='btn-success'),
                 StrictButton('取消', css_class='btn-default'),
                 css_class="col-md-offset-2 col-md-9"))
