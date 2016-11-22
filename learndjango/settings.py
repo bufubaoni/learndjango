@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     'django.conf.urls',
     'river',
     'mptt',
-    # 'crispy_forms',
+    'crispy_forms',
     'django_tables2',
     'sekizai',
     'hijack',
     'compat',
     'hijack_admin',
-    'bootstrap3'
+    # 'bootstrap3'
 
 ]
 
@@ -65,7 +65,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['c:/Python27/Lib/site-packages/mptt/templates',
-                 "c:/Python27/Lib/site-packages/django_tables2/templates"],
+                 "c:/Python27/Lib/site-packages/django_tables2/templates",
+                 "c:/Python27/Lib/site-packages/crispy_forms/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,11 +131,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 
 # AUTH_USER_MODEL = 'mysite.CustomUser'
-CRISPY_TEMPLATE_PACK = 'uni_form'
+# CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # form setting
-CRISPY_CLASS_CONVERTERS = {'textinput': "col-xs-10 col-sm-5"}
-
+# CRISPY_CLASS_CONVERTERS = {'textinput': "col-xs-10 col-sm-5"}
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # hijack config
 HIJACK_LOGIN_REDIRECT_URL = '/profile/'  # Where admins are redirected to after hijacking a user
 HIJACK_LOGOUT_REDIRECT_URL = '/admin/auth/user/'  # Where admins are redirected to after releasing a user

@@ -70,7 +70,7 @@ def addmodel(request):
         return redirect("/mysite")
     else:
         form = ExampleForm()
-        return render(request, "taskflow.html", {'form': form, "nodes": nodes})
+        return render(request, "taskflow.html", {'form': form, "nodes": nodes,"test":"test"})
 
 
 def promodel(request, md_id):
