@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'hijack',
     'compat',
     'hijack_admin',
+    # 'django_cron'
+    'djcelery'
     # 'bootstrap3'
 
 ]
@@ -141,3 +143,7 @@ HIJACK_LOGIN_REDIRECT_URL = '/profile/'  # Where admins are redirected to after 
 HIJACK_LOGOUT_REDIRECT_URL = '/admin/auth/user/'  # Where admins are redirected to after releasing a user
 HIJACK_ALLOW_GET_REQUESTS = True
 HIJACK_REGISTER_ADMIN = True
+# cron app
+CRON_CLASSES = [
+    "mysite.jobTest.MyCronJob",
+]
