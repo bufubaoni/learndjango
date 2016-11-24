@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'hijack',
     'compat',
     'hijack_admin',
+    'djcelery'
     # 'bootstrap3'
 
 ]
-
+import djcelery
+djcelery.setup_loader()
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -141,3 +143,28 @@ HIJACK_LOGIN_REDIRECT_URL = '/profile/'  # Where admins are redirected to after 
 HIJACK_LOGOUT_REDIRECT_URL = '/admin/auth/user/'  # Where admins are redirected to after releasing a user
 HIJACK_ALLOW_GET_REQUESTS = True
 HIJACK_REGISTER_ADMIN = True
+
+# cron job setting
+RQ_JOBS_MODULE = 'mysite.cron'
+
+# rq queue
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': '',
+        'DEFAULT_TIMEOUT': 360,
+    },
+    'high': {
+        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
+        'DEFAULT_TIMEOUT': 500,
+    },
+    'low': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+    }
+}
+
+RQ_EXCEPTION_HANDLERS = ['path.to.my.handler']
