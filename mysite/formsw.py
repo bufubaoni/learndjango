@@ -6,6 +6,8 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Div
 from django import forms
 
+from mysite.models import MyModel
+
 CRISPY_CLASS_CONVERTERS = {'textinput': "textinput inputtext"}
 
 
@@ -29,17 +31,14 @@ class ExampleForm(forms.Form):
         # attrs={"_class": "chosen-select"},
         help_text="选择你喜欢的",
         label="选择",
-        choices=(list({1: 2, 3: 4}.items())),
+        choices=(MyModel.objects.values_list("id", "testflow")),
         required=True,
         widget=None,
     )
     swifch = forms.MultipleChoiceField(
         choices=(list({1: 2, 3: 4}.items())),
-
         initial='option_one',
         widget=forms.CheckboxSelectMultiple,
-        # choices=(list({1: 2, 3: 4}.items())),
-        # label="开关"
     )
 
     def __init__(self, *args, **kwargs):
