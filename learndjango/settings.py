@@ -46,11 +46,12 @@ INSTALLED_APPS = [
     'compat',
     'hijack_admin',
     # 'django_cron'
-    'djcelery'
+    # 'djcelery'
     # 'bootstrap3'
 
 ]
-
+# import djcelery
+# djcelery.setup_loader()
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -144,6 +145,15 @@ HIJACK_LOGOUT_REDIRECT_URL = '/admin/auth/user/'  # Where admins are redirected 
 HIJACK_ALLOW_GET_REQUESTS = True
 HIJACK_REGISTER_ADMIN = True
 # cron app
-CRON_CLASSES = [
-    "mysite.jobTest.MyCronJob",
-]
+# CRON_CLASSES = [
+#     "mysite.jobTest.MyCronJob",
+# ]
+
+# celery
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost//'
+
+#: Only add pickle to this list if your broker is secured
+#: from unwanted access (see userguide/security.html)
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite'
+CELERY_TASK_SERIALIZER = 'json'
