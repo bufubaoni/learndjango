@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'hijack',
     'compat',
     'hijack_admin',
-    'rest_framework'
+    'rest_framework',
+    'lms'
     # 'bootstrap3'
 
 ]
