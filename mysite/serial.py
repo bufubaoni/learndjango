@@ -7,21 +7,16 @@ from river.models import State
 import json
 
 
-class MyModelSerializer(serializers.ModelSerializer):
+class MyModelSerializer(serializers.HyperlinkedModelSerializer):
     state_display = serializers.SerializerMethodField()
     state = serializers.PrimaryKeyRelatedField(
-        # many=True,
         queryset=State.objects.all()
     )
 
-    # def get_state_display(self,obj):
-    #     return ''.join([state.label for state in obj.state.all()])
-    # def get_state(self):
-    #     return self.get_state_display(self.state)
     class Meta:
         model = MyModel
-        # state = serializers
         fields = ('id', 'testflow', 'state', 'state_display')
+
 
     def get_state_display(self, obj):
         # import pdb

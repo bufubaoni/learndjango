@@ -28,7 +28,7 @@ class UserAdmin(BaseUserAdim, HijackUserAdminMixin):
 
 
 class MyModelAdmin(admin.ModelAdmin):
-    list_display = ('testflow', 'state')
+    list_display = ('id','testflow', 'state')
 
 
 admin.site.register(MyModel, MyModelAdmin)
