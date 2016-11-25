@@ -15,9 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework import routers
+from mysite import views
 
+router = routers.DefaultRouter()
+router.register(r'mymodel', views.MyModelSet)
 urlpatterns = [
+    url(r'^', include(router.urls)),
+    url(r'^api/', include('rest_framework.urls'), name="rest_framework"),
     url(r'^admin/', admin.site.urls),
     url(r'^mysite/', include('mysite.urls')),
     url(r'^hijack/', include('hijack.urls')),
+
 ]

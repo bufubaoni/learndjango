@@ -45,12 +45,10 @@ INSTALLED_APPS = [
     'hijack',
     'compat',
     'hijack_admin',
-    'djcelery'
+    'rest_framework'
     # 'bootstrap3'
 
 ]
-import djcelery
-djcelery.setup_loader()
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -144,5 +142,8 @@ HIJACK_LOGOUT_REDIRECT_URL = '/admin/auth/user/'  # Where admins are redirected 
 HIJACK_ALLOW_GET_REQUESTS = True
 HIJACK_REGISTER_ADMIN = True
 
-
-
+# rest framwork
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGE_SIZE': 10
+}

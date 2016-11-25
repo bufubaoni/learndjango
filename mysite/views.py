@@ -15,8 +15,8 @@ from .formsw import ExampleForm
 from mysite.models import MyModel, somework, CustomUser, MenuItem
 from grids import MyModelTable
 import pdb
-
-
+from rest_framework import viewsets
+from serial import MyModelSerializer
 def test(request):
     task = MyModel.objects.all()
     formss = ExampleForm()
@@ -117,3 +117,8 @@ def pizhun(request, md_id):
     md.proceed(request.user, next_state=State.objects.get(label='完成请假'))
 
     return redirect("/mysite")
+
+
+class MyModelSet(viewsets.ModelViewSet):
+    queryset = MyModel.objects.all()
+    serializer_class = MyModelSerializer
