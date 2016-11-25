@@ -10,9 +10,17 @@ from django.contrib.auth.models import User
 
 # Register your models here.
 
+# class MenuItemAdmin(DraggableMPTTAdmin):
+#     # super.__init__()
+#     list_display = ('id', 'name', 'uil')
+
+
 admin.site.register(somework)
 admin.site.register(MenuGroup)
-admin.site.register(MenuItem, DraggableMPTTAdmin)
+admin.site.register(MenuItem, DraggableMPTTAdmin, list_display=('name', 'icon', 'uil'),
+                    list_display_links=(
+                        'name',
+                    ), )
 
 
 class Custom(admin.StackedInline):
@@ -26,9 +34,8 @@ class UserAdmin(BaseUserAdim, HijackUserAdminMixin):
     inlines = (Custom,)
 
 
-
 class MyModelAdmin(admin.ModelAdmin):
-    list_display = ('id','testflow', 'state')
+    list_display = ('id', 'testflow', 'state')
 
 
 admin.site.register(MyModel, MyModelAdmin)
