@@ -17,9 +17,10 @@ from django.contrib.auth.models import User
 
 admin.site.register(somework)
 admin.site.register(MenuGroup)
-admin.site.register(MenuItem, DraggableMPTTAdmin, list_display=('name', 'icon', 'uil'),
+admin.site.register(MenuItem, DraggableMPTTAdmin,
+                    list_display=('tree_actions', 'indented_title', 'icon', 'uil'),
                     list_display_links=(
-                        'name',
+                        'indented_title',
                     ), )
 
 
