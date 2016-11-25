@@ -2,10 +2,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django import forms
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 
 # Create your views here.
 from django.utils import six
+from django.views import View
+from django.views.generic import TemplateView
+from django.views.generic.detail import BaseDetailView, ContextMixin,TemplateResponseMixin
 from django_tables2 import RequestConfig
 from requests import sessions
 from river.models import State
@@ -17,6 +20,9 @@ from grids import MyModelTable
 import pdb
 from rest_framework import viewsets
 from serial import MyModelSerializer
+from .commix import menuMix
+
+
 def test(request):
     task = MyModel.objects.all()
     formss = ExampleForm()
@@ -70,7 +76,7 @@ def addmodel(request):
         return redirect("/mysite")
     else:
         form = ExampleForm()
-        return render(request, "taskflow.html", {'form': form, "nodes": nodes,"test":"test"})
+        return render(request, "taskflow.html", {'form': form, "nodes": nodes, "test": "test"})
 
 
 def promodel(request, md_id):
@@ -122,3 +128,18 @@ def pizhun(request, md_id):
 class MyModelSet(viewsets.ModelViewSet):
     queryset = MyModel.objects.all()
     serializer_class = MyModelSerializer
+
+
+class cvb(TemplateView):
+    template_name = 'testmixin.html'
+
+    def get(self, request, *args, **kwargs):
+        self.user = request.user
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
+    def get_context_data(self, **kwargs):
+        context = super(cvb, self).get_context_data(**kwargs)
+        # pdb.set_trace()
+        context['nodes'] =CustomUser.objects.get(user=self.user.pk).menugroup.menu.get_descendants()
+        return context
+

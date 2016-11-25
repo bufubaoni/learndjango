@@ -22,6 +22,7 @@ router = routers.DefaultRouter()
 router.register(r'mymodel', views.MyModelSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
+
     url(r'^api/', include('rest_framework.urls'), name="rest_framework"),
     url(r'^admin/', admin.site.urls),
     url(r'^mysite/', include('mysite.urls')),

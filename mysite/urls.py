@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^checkwork/(?P<work_id>[0-9]+)/$', views.checkwork, name="checkwork"),
     url(r'^bohuiqingjia/(?P<md_id>[0-9]+)/$', views.bohuiqingjia, name="bohuiqingjia"),
     url(r'^pizhun/(?P<md_id>[0-9]+)/$', views.pizhun, name="pizhun"),
-    # url(r'^promodel/(?P<test_id>[0-9]+)$', views.promodel, name="promodel")
+    # url(r'^promodel/(?P<test_id>[0-9]+)$', views.promodel, name="promodel"),
+    url(r'^testcvb/', views.cvb.as_view()),
 ]
