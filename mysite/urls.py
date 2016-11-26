@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^pizhun/(?P<md_id>[0-9]+)/$', views.pizhun, name="pizhun"),
     # url(r'^promodel/(?P<test_id>[0-9]+)$', views.promodel, name="promodel"),
     url(r'^testcvb/', views.cvb.as_view()),
+    url(r'^testupload/',views.testupload.as_view())
 ]

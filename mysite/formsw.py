@@ -3,7 +3,7 @@
 # from uni_form.helper import FormHelper
 from crispy_forms.bootstrap import StrictButton
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Div
+from crispy_forms.layout import Submit, Layout, Div, Button
 from django import forms
 
 from mysite.models import MyModel
@@ -48,8 +48,29 @@ class ExampleForm(forms.Form):
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-10'
         self.helper.field_template = "form/customField.html"
+
         self.helper.layout = Layout(
             'testflow', 'datetime', 'file', 'file2', 'select1', 'swifch',
             Div(StrictButton('添加', css_class='btn-success'),
+                StrictButton('取消', css_class='btn-default'),
+                css_class="col-md-offset-2 col-md-9"))
+
+
+class Upload(forms.Form):
+    loadfile = forms.FileField(
+        label="文件",
+        help_text="测试上传"
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(Upload, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-2'
+        self.helper.field_class = 'col-lg-10'
+        self.helper.field_template = "form/customField.html"
+        self.helper.layout = Layout(
+            'loadfile',
+            Div(Submit('submit', 'Submit'),
                 StrictButton('取消', css_class='btn-default'),
                 css_class="col-md-offset-2 col-md-9"))

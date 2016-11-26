@@ -3,18 +3,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django import forms
 from django.shortcuts import render, redirect, render_to_response
-
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 # Create your views here.
 from django.utils import six
 from django.views import View
-from django.views.generic import TemplateView
-from django.views.generic.detail import BaseDetailView, ContextMixin,TemplateResponseMixin
+from django.views.generic import TemplateView, FormView
+from django.views.generic.detail import BaseDetailView, ContextMixin, TemplateResponseMixin
 from django_tables2 import RequestConfig
 from requests import sessions
 from river.models import State
 from river.utils.exceptions import RiverException
 
-from .formsw import ExampleForm
+from .formsw import ExampleForm, Upload
 from mysite.models import MyModel, somework, CustomUser, MenuItem
 from grids import MyModelTable
 import pdb
@@ -137,9 +138,39 @@ class cvb(TemplateView):
         self.user = request.user
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
+
     def get_context_data(self, **kwargs):
         context = super(cvb, self).get_context_data(**kwargs)
         # pdb.set_trace()
-        context['nodes'] =CustomUser.objects.get(user=self.user.pk).menugroup.menu.get_descendants()
+        context['nodes'] = CustomUser.objects.get(user=self.user.pk).menugroup.menu.get_descendants()
         return context
 
+
+class testupload(FormView):
+    template_name = "upload.html"
+    form_class = Upload
+    success_url = '/mysite/testupload'
+    def get(self, request, *args, **kwargs):
+        self.user = request.user
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+
+        files = request.FILES['loadfile']
+
+        with default_storage.open('tem/'+files.name, 'wb+') as f:
+            for chunck in form.files['loadfile'].chunks():
+                f.write(chunck)
+        # pdb.set_trace()
+        return self.form_valid(form)
+        # pdb.set_trace()
+
+    def get_context_data(self, **kwargs):
+        context = super(testupload, self).get_context_data(**kwargs)
+        # pdb.set_trace()
+        context['nodes'] = CustomUser.objects.get(user=self.user.pk).menugroup.menu.get_descendants()
+        context['form'] = Upload()
+        return context
