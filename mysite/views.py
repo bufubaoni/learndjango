@@ -21,7 +21,7 @@ from grids import MyModelTable
 import pdb
 from rest_framework import viewsets
 from serial import MyModelSerializer
-from .commix import menuMix
+from .commix.menuMix import MenuMixin
 
 
 def test(request):
@@ -146,11 +146,13 @@ class cvb(TemplateView):
         return context
 
 
-class testupload(FormView):
+class testupload(MenuMixin, FormView):
     template_name = "upload.html"
     form_class = Upload
     success_url = '/mysite/testupload'
+
     def get(self, request, *args, **kwargs):
+        self.nodes = self.get_menu_response(request)
         self.user = request.user
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
@@ -161,16 +163,13 @@ class testupload(FormView):
 
         files = request.FILES['loadfile']
 
-        with default_storage.open('tem/'+files.name, 'wb+') as f:
+        with default_storage.open('tem/' + files.name, 'wb+') as f:
             for chunck in form.files['loadfile'].chunks():
                 f.write(chunck)
-        # pdb.set_trace()
         return self.form_valid(form)
-        # pdb.set_trace()
 
     def get_context_data(self, **kwargs):
         context = super(testupload, self).get_context_data(**kwargs)
-        # pdb.set_trace()
-        context['nodes'] = CustomUser.objects.get(user=self.user.pk).menugroup.menu.get_descendants()
+        context['nodes'] = self.nodes
         context['form'] = Upload()
         return context

@@ -8,11 +8,6 @@ from django.views.generic.detail import SingleObjectMixin, ContextMixin
 import pdb
 
 
-class MenuMixin(ContextMixin):
-    def get_nodes(self):
-        nodes=0
-        return nodes
-    def get_context_data(self, **kwargs):
-        context = super(MenuMixin, self).get_context_data(**kwargs)
-        context['nodes'] = self.get_nodes()
-        return context
+class MenuMixin(object):
+    def get_menu_response(self, request, **kwargs):
+        return CustomUser.objects.get(user=request.user.pk).menugroup.menu.get_descendants()
