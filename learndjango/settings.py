@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
+import djcelery
+djcelery.setup_loader()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -46,7 +47,9 @@ INSTALLED_APPS = [
     'compat',
     'hijack_admin',
     'rest_framework',
-    'lms'
+    'lms',
+    'kombu.transport.django',
+    'djcelery'
     # 'bootstrap3'
 
 ]
@@ -148,3 +151,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'PAGE_SIZE': 10
 }
+# Celery settings
+
+BROKER_URL = 'amqp://guest:guest@localhost//'
+
+#: Only add pickle to this list if your broker is secured
+#: from unwanted access (see userguide/security.html)
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
