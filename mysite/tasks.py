@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from celery import shared_task
+from celery import shared_task,task
 
 
 @shared_task
@@ -16,3 +16,7 @@ def mul(x, y):
 @shared_task
 def xsum(numbers):
     return sum(numbers)
+
+@shared_task
+def testprint():
+    print("=====666666666=====")
