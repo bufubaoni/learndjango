@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 from mysite import views
+from djcelery import urls
 
 router = routers.DefaultRouter()
 router.register(r'mymodel', views.MyModelSet)
