@@ -11,10 +11,6 @@ from djcelery.models import TaskMeta
 
 # Register your models here.
 
-# class MenuItemAdmin(DraggableMPTTAdmin):
-#     # super.__init__()
-#     list_display = ('id', 'name', 'uil')
-
 
 
 admin.site.register(somework)
