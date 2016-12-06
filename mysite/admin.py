@@ -10,9 +10,6 @@ from django.contrib.auth.models import User
 from djcelery.models import TaskMeta
 
 # Register your models here.
-
-
-
 admin.site.register(somework)
 admin.site.register(MenuGroup)
 admin.site.register(MenuItem, DraggableMPTTAdmin,
